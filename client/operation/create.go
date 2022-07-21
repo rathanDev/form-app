@@ -1,9 +1,9 @@
 package operation
 
 import (
-	"form-app/config"
-	"form-app/model"
-	"form-app/util"
+	"form3-client/config"
+	"form3-client/model"
+	"form3-client/util"
 	"bytes"
 	"encoding/json"
 	"fmt"

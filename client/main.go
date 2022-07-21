@@ -1,9 +1,9 @@
 package main
 
 import (
-	"form-app/model"
-	"form-app/operation"
-	"form-app/util"
+	"form3-client/model"
+	"form3-client/operation"
+	"form3-client/util"
 	"log"
 )
 

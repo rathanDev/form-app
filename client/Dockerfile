@@ -1,6 +1,6 @@
 FROM golang:1.10
 
-ENV APP_HOME /go/src/form-app
+ENV APP_HOME /go/src/form3-client
 RUN mkdir -p "$APP_HOME"
 WORKDIR "$APP_HOME"
 
