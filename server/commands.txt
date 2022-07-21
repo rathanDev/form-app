@@ -1,0 +1,55 @@
+# ----- ----- # ----- ----- # ----- ----- #
+
+docker-config -v
+docker-config config 
+docker-config up
+docker-config ps 
+docker-config down
+
+# ----- ----- # ----- ----- # ----- ----- #
+
+docker ps 
+    ID 
+
+docker exec -it <ID> bash 
+
+psql 
+
+# ----- ----- # ----- ----- # ----- ----- #
+
+\l              show databases
+\c  dbName      connect to database
+\dn             list all schemas 
+\dt             list all tables 
+
+
+interview_accountapi=# \d "Account";
+
+insert into "Account"(id, organisation_id, version, is_deleted, is_locked, created_on, modified_on, record) values ('f50fc252-03f3-11ed-a0bc-0242ac130003', 'f50fc252-03f3-11ed-a0bc-0242ac130004', 1, false, false, '2022-01-01', '2022-02-02', '{"key1": "value1", "key2": "value2"}');
+
+insert into "Account"(id, organisation_id, version, is_deleted, is_locked, created_on, modified_on, record) values ('f50fc252-03f3-11ed-a0bc-0242ac130003', 'f50fc252-03f3-11ed-a0bc-0242ac130004', 1, false, false, '2022-01-01', '2022-02-02', '{"key1": "value1", "key2": "value2"}');
+
+insert into "Account"(id, organisation_id, version, is_deleted, is_locked, created_on, modified_on, record) values ('f50fc252-03f3-11ed-a0bc-0242ac130011', 'f50fc252-03f3-11ed-a0bc-0242ac130012', 1, false, false, '2022-01-03', '2022-02-03', '{"alternative_names":["Rathan"], "country":"Singapore", "name":["Jana"]}');
+
+insert into "Account"(id, organisation_id, version, is_deleted, is_locked, created_on, modified_on, record) values ('f50fc252-03f3-11ed-a0bc-0242ac130013', 'f50fc252-03f3-11ed-a0bc-0242ac130014', 1, false, false, '2022-01-03', '2022-02-03', '{"account_classification":"class1", "alternative_names":["Rathan"], "country":"Singapore", "name":["Jana"]}');
+
+insert into "Account"(id, organisation_id, version, is_deleted, is_locked, created_on, modified_on, record) values ('f50fc252-03f3-11ed-a0bc-0242ac130101', 'f50fc252-03f3-11ed-a0bc-0242ac130201', 1, false, false, '2022-01-03', '2022-02-03', '{"account_classification":"class1", "account_matching_opt_out":true, "account_number":"1O001", "bank_id":"5O001",  "alternative_names":["Rathan"], "country":"Singapore", "name":["Jana"]}');
+
+
+delete from "Account";
+
+select * from "Account";
+
+# ----- ----- # ----- ----- # ----- ----- #
+
+# Golang commands 
+
+go run main.go helper.go 
+
+go run .
+
+# ----- ----- # ----- ----- # ----- ----- #
+
+form3tech-interviewer-1
+
+# ----- ----- # ----- ----- # ----- ----- #
