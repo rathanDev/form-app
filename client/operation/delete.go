@@ -39,7 +39,7 @@ func Delete(id string, version int64) {
 func createDeleteUrl(id string, version int64) string {
 	url := config.AccountUrl()
 	const (
-		urlTemplate = `%s/%s?version=%s`
+		urlTemplate = `%s/%s?version=%d`
 	)
 	var deleteUrl = fmt.Sprintf(urlTemplate, url, id, version)
 	log.Println(deleteUrl)
