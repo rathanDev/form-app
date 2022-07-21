@@ -4,6 +4,10 @@
 
 go run .
 
+go test -v .\operation\
+or 
+cd operation
+go test
 
 
 # ----- ----- # ----- ----- # ----- ----- # ----- ----- #
