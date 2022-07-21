@@ -1,3 +1,23 @@
+
+# ----- ----- # ----- ----- # ----- ----- # ----- ----- #
+# Go related #
+
+go run .
+
+
+
+# ----- ----- # ----- ----- # ----- ----- # ----- ----- #
+# Docker related #
+
+docker build -t form3-client .
+docker images 
+docker run form3-client 
+
+
+
+
+# ----- ----- # ----- ----- # ----- ----- # ----- ----- #
+
 Encapsulated code into functions 
 Divided code into multiple files 
 
@@ -6,10 +26,8 @@ we keep 2 classes
 one to contain database entity 
 other to return in API
 
-docker build -t form-app .
-docker images 
-docker run -p 8081:8080 form-app 
-
-docker run form-app
 
 
+# ----- ----- # ----- ----- # ----- ----- # ----- ----- #
+# ----- ----- # ----- ----- # ----- ----- # ----- ----- #
+# ----- ----- # ----- ----- # ----- ----- # ----- ----- #
