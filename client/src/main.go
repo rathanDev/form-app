@@ -13,7 +13,7 @@ import (
 
 func main() {
 
-	log.Println("#--- form3-client - started as service ---#")
+	log.Println("#--- form3-client - Start as service ---#")
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		log.Println("\nExecute create fetch and delete")

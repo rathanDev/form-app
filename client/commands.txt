@@ -27,6 +27,8 @@ docker build --tag form3-client .
 
 docker images 
 
+docker rm <containerId>
+
 docker run --name form3-client -p 8085:8085 form3-client 
 docker run -it -p 8085:8085 form3-client 
 docker run --publish 8085:8085 form3-client
