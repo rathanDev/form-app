@@ -1,10 +1,10 @@
-FROM golang:1.10
+FROM golang:1.18
 
 ENV APP_HOME /go/src/form3-client
 RUN mkdir -p "$APP_HOME"
 WORKDIR "$APP_HOME"
 
-COPY . .
+COPY ./src .
 
 RUN go get -d -v ./...
 

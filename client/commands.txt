@@ -2,6 +2,13 @@
 # ----- ----- # ----- ----- # ----- ----- # ----- ----- #
 # Go related #
 
+go mod init rathanDev/form3-client
+go mod init form3-client
+
+go mod download 
+go mod vendor 
+go mod verify 
+
 go run .
 
 go test -v .\operation\
@@ -13,17 +20,30 @@ go test
 # ----- ----- # ----- ----- # ----- ----- # ----- ----- #
 # Docker related #
 
+docker image rm form3-client:latest
+
 docker build -t form3-client .
+docker build --tag form3-client .
 
 docker images 
 
-docker run -p 8081:8080 form3-client 
+docker run -p 8085:8085 form3-client 
 docker run -it -p 8085:8085 form3-client 
+docker run --publish 8085:8085 form3-client
 
 docker run form3-client 
 
 docker network ls 
     -- make sure bridge is there 
+
+
+
+
+docker container ls -a 
+docker rm <containerId>
+
+
+
 
 
 # ----- ----- # ----- ----- # ----- ----- # ----- ----- #
