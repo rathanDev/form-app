@@ -22,7 +22,8 @@ docker run -it -p 8085:8085 form3-client
 
 docker run form3-client 
 
-
+docker network ls 
+    -- make sure bridge is there 
 
 
 # ----- ----- # ----- ----- # ----- ----- # ----- ----- #

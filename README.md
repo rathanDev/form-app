@@ -1,9 +1,10 @@
 Candidate Name: Janarthan
 
 # Start server
-cd cd .\server\interview-accountapi\
-docker-compose up 
+cd cd .\server\interview-accountapi\          (Navigate to api directory)
+docker-compose up                             (Start server)  
 
 # Test 
-cd client
-go test -v .\operation\
+cd client                                     (Navigate to operation directory)
+go test -v .\operation\                       (Run unit tests)    
+go run .                                      (Run main)
