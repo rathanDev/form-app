@@ -1,6 +1,7 @@
 package operation
 
 import (
+	"form3-client/config"
 	"form3-client/model"
 	"form3-client/util"
 	"log"
@@ -8,6 +9,9 @@ import (
 )
 
 func TestCreateFetchDelete(t *testing.T) {
+
+	const localhostUrl = "http://localhost:8080"
+	config.SetBaseUrl(localhostUrl)
 
 	const givenAccountNumber = "400300"
 	const givenAccountId = "eb0bd6f5-c3f5-44b2-b677-acd23cdde516"

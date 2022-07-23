@@ -27,7 +27,7 @@ docker build --tag form3-client .
 
 docker images 
 
-docker run -p 8085:8085 form3-client 
+docker run --name form3-client -p 8085:8085 form3-client 
 docker run -it -p 8085:8085 form3-client 
 docker run --publish 8085:8085 form3-client
 
@@ -43,6 +43,10 @@ docker container ls -a
 docker rm <containerId>
 
 
+docker network create form3-network
+docker network inspect form3-network 
+docker network connect form3-network interview-accountapi
+docker network connect form3-network form3-client
 
 
 

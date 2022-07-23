@@ -1,10 +1,10 @@
 package operation
 
 import (
-	"form3-client/config"
-	"form3-client/model"
 	"encoding/json"
 	"fmt"
+	"form3-client/config"
+	"form3-client/model"
 	"io/ioutil"
 	"log"
 	"net/http"

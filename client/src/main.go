@@ -1,22 +1,34 @@
 package main
 
 import (
+	"fmt"
+	"html"
+	"log"
+	"net/http"
+
 	"form3-client/model"
 	"form3-client/operation"
 	"form3-client/util"
-	"log"
 )
 
 func main() {
-	log.Println("#--- form3-client ---#")
 
-	create()
-	fetch()
-	delete()
+	log.Println("#--- form3-client - started as service ---#")
+
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		log.Println("\nExecute create fetch and delete")
+		create()
+		fetch()
+		delete()
+		fmt.Fprintf(w, "Successfully executed, %q", html.EscapeString(r.URL.Path))
+	})
+
+	log.Fatal(http.ListenAndServe(":8085", nil))
 }
 
 func create() {
 	log.Println("\n\nCreate")
+
 	var accountData model.AccountData
 	accountData.ID = "eb0bd6f5-c3f5-44b2-b677-acd23cdde516"
 	accountData.OrganisationID = "eb0bd6f5-c3f5-44b2-b677-acd23cdde616"

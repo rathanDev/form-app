@@ -1,8 +1,14 @@
 package config
 
-const baseUrl string = "http://localhost:8080"
-var version string = "/v1";
+var version string = "/v1"
+
 const accountUrl string = "/organisation/accounts"
+
+var baseUrl = "http://interview-accountapi:8080"
+
+func SetBaseUrl(url string) {
+	baseUrl = url
+}
 
 func AccountUrl() string {
 	version = "/v1"

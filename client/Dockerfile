@@ -6,7 +6,7 @@ WORKDIR "$APP_HOME"
 
 COPY ./src .
 
-RUN go get -d -v ./...
+RUN go mod download
 
 RUN go install -v ./...
 
