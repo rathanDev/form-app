@@ -65,5 +65,29 @@ other to return in API
 
 
 # ----- ----- # ----- ----- # ----- ----- # ----- ----- #
+
+  client:
+    image: form3-client:latest
+    container_name: form3-client
+    depends_on:
+      - accountapi
+    ports:
+      - 8085:8085
+    networks:
+      - form3-net
+
+
+    networks:
+      - form3-net
+
+
+networks:
+  form3-net: {}
+
+
+
+
+
+
 # ----- ----- # ----- ----- # ----- ----- # ----- ----- #
 # ----- ----- # ----- ----- # ----- ----- # ----- ----- #
