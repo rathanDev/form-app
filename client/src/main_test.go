@@ -1,17 +1,18 @@
-package operation
+package main 
 
 import (
-	"form3-client/config"
+	// "form3-client/config"
+	"form3-client/operation"
 	"form3-client/model"
 	"form3-client/util"
 	"log"
 	"testing"
 )
 
-func TestCreateFetchDelete(t *testing.T) {
+func TestCreate(t *testing.T) {
 
-	const localhostUrl = "http://localhost:8080"
-	config.SetBaseUrl(localhostUrl)
+	// const localhostUrl = "http://localhost:8080"
+	// config.SetBaseUrl(localhostUrl)
 
 	const givenAccountNumber = "400300"
 	const givenAccountId = "eb0bd6f5-c3f5-44b2-b677-acd23cdde516"
@@ -37,9 +38,9 @@ func TestCreateFetchDelete(t *testing.T) {
 
 	accountData.Attributes = &accountAttr
 
-	Create(accountData)
+	operation.Create(accountData)
 
-	accounts := FetchMapped()
+	accounts := operation.FetchMapped()
 	log.Println("AccountsAfterCreation:", accounts)
 
 	if len(accounts) != 1 {
@@ -53,13 +54,13 @@ func TestCreateFetchDelete(t *testing.T) {
 		t.Errorf("got %q, wanted %q", fetchedAccountNumber, givenAccountNumber)
 	}
 
-	Delete(givenAccountId, *givenVersion)
+	operation.Delete(givenAccountId, *givenVersion)
 
-	accountsAfterDeletion := FetchMapped()
+	accountsAfterDeletion := operation.FetchMapped()
 	log.Println("AccountsAfterDeletion:", accountsAfterDeletion)
 
 	if len(accounts) == 0 {
 		t.Error("Expected no accounts")
-	}
+	}	
 
 }
