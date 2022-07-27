@@ -6,16 +6,17 @@ import (
 	"fmt"
 	"form3-client/config"
 	"form3-client/model"
-	"form3-client/util"
+	// "form3-client/util"
 	"log"
 	"net/http"
 )
 
-func Create(accountData model.AccountData) {
+func Create(accountData model.AccountData) *http.Response {
 	url := config.AccountUrl()
 	payload := createPayload(accountData)
 	resp := doPostToCreate(payload, url)
-	util.PrintHttpResponse(resp)
+	return resp
+	// util.PrintHttpResponse(resp)
 }
 
 func createPayload(accountData model.AccountData) []byte {

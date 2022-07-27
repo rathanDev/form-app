@@ -5,6 +5,5 @@ import (
 )
 
 func main() {
-	log.Println("#--- form3-client - Start as service ---#")
+	log.Println("#--- Run form3-client ---#")
 }
-
