@@ -10,6 +10,4 @@ RUN go mod download
 
 RUN go install -v ./...
 
-EXPOSE 8085
-
-CMD ["form3-client"]
+CMD ["go", "test", "-v"]
