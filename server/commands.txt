@@ -1,10 +1,10 @@
 # ----- ----- # ----- ----- # ----- ----- #
 
-docker-config -v
-docker-config config 
-docker-config up
-docker-config ps 
-docker-config down
+docker-compose -v
+docker-compose config 
+docker-compose up
+docker-compose ps 
+docker-compose down
 
 # ----- ----- # ----- ----- # ----- ----- #
 
