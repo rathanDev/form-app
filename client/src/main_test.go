@@ -15,8 +15,8 @@ const givenAccountId = "eb0bd6f5-c3f5-44b2-b677-acd23cdde516"
 var givenVersion = util.CreateNumberPointer(0)
 
 func TestInit(t *testing.T) {
-	const localhostUrl = "http://localhost:8080"
-	config.SetBaseUrl(localhostUrl)
+	const baseUrl = "http://interview-accountapi:8080"
+	config.SetBaseUrl(baseUrl)
 }
 
 func TestCreate_expect201Created(t *testing.T) {
