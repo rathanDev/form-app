@@ -13,10 +13,6 @@ func CreateStringPointer(val string) *string {
 	return &val
 }
 
-func CreateNumberPointer(val int64) *int64 {
-	return &val
-}
-
 func PrintHttpResponse(resp *http.Response) {
 	log.Println("response:", resp)
 	log.Println("response Status : ", resp.Status)

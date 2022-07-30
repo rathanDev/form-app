@@ -12,7 +12,8 @@ import (
 const givenAccountNumber = "400300"
 const givenAccountId = "eb0bd6f5-c3f5-44b2-b677-acd23cdde516"
 
-var givenVersion = util.CreateNumberPointer(0)
+var version int64 = 0
+var versionPointer *int64 = &version
 
 func TestInit(t *testing.T) {
 	const baseUrl = "http://interview-accountapi:8080"
@@ -26,7 +27,7 @@ func TestCreate_expect201Created(t *testing.T) {
 	accountData.ID = givenAccountId
 	accountData.OrganisationID = "eb0bd6f5-c3f5-44b2-b677-acd23cdde616"
 	accountData.Type = "accounts"
-	accountData.Version = givenVersion
+	accountData.Version = versionPointer
 
 	var accountAttr model.AccountAttributes
 	accountAttr.AccountClassification = util.CreateStringPointer("Personal")
@@ -42,8 +43,11 @@ func TestCreate_expect201Created(t *testing.T) {
 
 	accountData.Attributes = &accountAttr
 
-	resp := operation.Create(accountData)
-	// log.Println(resp)
+	resp, err := operation.Create(accountData)
+
+	if err != nil {
+		t.Errorf("No error expected but %q", err)
+	}
 
 	const createdStatus = "201 Created"
 	var actualStatus = resp.Status
@@ -59,7 +63,7 @@ func TestCreate_expect409Conflict(t *testing.T) {
 	accountData.ID = givenAccountId
 	accountData.OrganisationID = "eb0bd6f5-c3f5-44b2-b677-acd23cdde616"
 	accountData.Type = "accounts"
-	accountData.Version = givenVersion
+	accountData.Version = versionPointer
 
 	var accountAttr model.AccountAttributes
 	accountAttr.AccountClassification = util.CreateStringPointer("Personal")
@@ -75,8 +79,11 @@ func TestCreate_expect409Conflict(t *testing.T) {
 
 	accountData.Attributes = &accountAttr
 
-	resp := operation.Create(accountData)
-	log.Println(resp)
+	resp, err := operation.Create(accountData)
+
+	if err != nil {
+		t.Errorf("No error expected but %q", err)
+	}
 
 	const conflictStatus = "409 Conflict"
 	var actualStatus = resp.Status
@@ -92,7 +99,7 @@ func TestCreate_expect400BadRequest_missingField(t *testing.T) {
 	accountData.ID = givenAccountId
 	// accountData.OrganisationID = "eb0bd6f5-c3f5-44b2-b677-acd23cdde616"
 	accountData.Type = "accounts"
-	accountData.Version = givenVersion
+	accountData.Version = versionPointer
 
 	var accountAttr model.AccountAttributes
 	accountAttr.AccountClassification = util.CreateStringPointer("Personal")
@@ -108,8 +115,11 @@ func TestCreate_expect400BadRequest_missingField(t *testing.T) {
 
 	accountData.Attributes = &accountAttr
 
-	resp := operation.Create(accountData)
-	log.Println(resp)
+	resp, err := operation.Create(accountData)
+
+	if err != nil {
+		t.Errorf("No error expected but %q", err)
+	}
 
 	const badRequestStatus = "400 Bad Request"
 	var actualStatus = resp.Status
@@ -125,7 +135,7 @@ func TestCreate_expect400BadRequest_InvalidInput(t *testing.T) {
 	accountData.ID = givenAccountId
 	accountData.OrganisationID = "eb0bd6f5-c3f5-44b2-b677-acd23cdde616"
 	accountData.Type = "accounts"
-	accountData.Version = givenVersion
+	accountData.Version = versionPointer
 
 	var accountAttr model.AccountAttributes
 	accountAttr.AccountClassification = util.CreateStringPointer("Personal")
@@ -141,8 +151,11 @@ func TestCreate_expect400BadRequest_InvalidInput(t *testing.T) {
 
 	accountData.Attributes = &accountAttr
 
-	resp := operation.Create(accountData)
-	log.Println(resp)
+	resp, err := operation.Create(accountData)
+
+	if err != nil {
+		t.Errorf("No error expected but %q", err)
+	}
 
 	const badRequestStatus = "400 Bad Request"
 	var actualStatus = resp.Status
@@ -155,14 +168,17 @@ func TestCreate_expect400BadRequest_InvalidInput(t *testing.T) {
 func TestFetch(t *testing.T) {
 	apiResponse := operation.Fetch()
 	accountDataList := apiResponse.AccountDataList
-	if len(accountDataList) != 1 {
-		t.Error("Expected one account")
+
+	actualCount := len(accountDataList)
+	const expectedCount int = 1
+
+	if actualCount != expectedCount {
+		t.Errorf("No of accounts actual:%q expected:%q", actualCount, expectedCount)
 	}
 }
 
 func TestFetchMapped(t *testing.T) {
 	accounts := operation.FetchMapped()
-	// log.Println("AccountsAfterCreation:", accounts)
 
 	if len(accounts) != 1 {
 		t.Error("Expected one account")
@@ -177,17 +193,16 @@ func TestFetchMapped(t *testing.T) {
 }
 
 func TestDelete(t *testing.T) {
+	resp, err := operation.Delete(givenAccountId, version)
 
-	operation.Delete(givenAccountId, *givenVersion)
-
-	accounts := operation.FetchMapped()
-	log.Println("AccountsAfterDeletion:", accounts)
-
-	actualCount := len(accounts)
-	const expectedCount = 0
-
-	if actualCount != expectedCount {
-		t.Errorf("No of accounts actual:%q expected:%q", actualCount, expectedCount)
+	if err != nil {
+		t.Errorf("Expected no err but actual:%q", err)
 	}
 
+	const noContentStatus = "204 No Content"
+	var actualStatus = resp.Status
+
+	if actualStatus != noContentStatus {
+		t.Errorf("Operation status actual:%q expected:%q", actualStatus, noContentStatus)
+	}
 }
