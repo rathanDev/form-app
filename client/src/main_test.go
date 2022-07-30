@@ -5,7 +5,7 @@ import (
 	"form3-client/model"
 	"form3-client/operation"
 	"form3-client/util"
-	"log"
+	// "log"
 	"testing"
 )
 
@@ -46,7 +46,7 @@ func TestCreate_expect201Created(t *testing.T) {
 	resp, err := operation.Create(accountData)
 
 	if err != nil {
-		t.Errorf("No error expected but %q", err)
+		t.Errorf("No error expected but %v", err)
 	}
 
 	const createdStatus = "201 Created"
@@ -82,7 +82,7 @@ func TestCreate_expect409Conflict(t *testing.T) {
 	resp, err := operation.Create(accountData)
 
 	if err != nil {
-		t.Errorf("No error expected but %q", err)
+		t.Errorf("No error expected but %v", err)
 	}
 
 	const conflictStatus = "409 Conflict"
@@ -118,7 +118,7 @@ func TestCreate_expect400BadRequest_missingField(t *testing.T) {
 	resp, err := operation.Create(accountData)
 
 	if err != nil {
-		t.Errorf("No error expected but %q", err)
+		t.Errorf("No error expected but %v", err)
 	}
 
 	const badRequestStatus = "400 Bad Request"
@@ -154,7 +154,7 @@ func TestCreate_expect400BadRequest_InvalidInput(t *testing.T) {
 	resp, err := operation.Create(accountData)
 
 	if err != nil {
-		t.Errorf("No error expected but %q", err)
+		t.Errorf("No error expected but %v", err)
 	}
 
 	const badRequestStatus = "400 Bad Request"
@@ -196,7 +196,7 @@ func TestDelete(t *testing.T) {
 	resp, err := operation.Delete(givenAccountId, version)
 
 	if err != nil {
-		t.Errorf("Expected no err but actual:%q", err)
+		t.Errorf("Expected no err but actual:%v", err)
 	}
 
 	const noContentStatus = "204 No Content"
