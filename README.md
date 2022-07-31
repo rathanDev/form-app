@@ -3,15 +3,15 @@ Candidate Name: Janarthan
 ### Build form3-client as docker image
 
 cd client 
-docker build -t form3-client .
+docker build -t form3tech-client .
 
 
 ### Update given docker-compose.yml
 # Add clint to given docker compose 
 
-  form3client:
-    image: form3-client:latest
-    container_name: form3-client
+  form3techclient:
+    image: form3tech-client:latest
+    container_name: form3tech-client
     depends_on:
       - accountapi
     restart: on-failure

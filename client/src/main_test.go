@@ -16,10 +16,9 @@ var version int64 = 0
 var versionPointer *int64 = &version
 
 func TestInit(t *testing.T) {
-	log.Println("----- ----- ----- ----- ----- Initiate API Testing ----- ----- ----- ----- -----")
+	log.Println("#----- ----- ----- ----- ----- ----- ----- Initiate API Testing ----- ----- ----- ----- ----- ----- -----#")
 
 	const baseUrl = "http://interview-accountapi:8080"
-	// const baseUrl = "http://localhost:8080"
 	config.SetBaseUrl(baseUrl)
 
 	resp, err := operation.CheckHealth()
