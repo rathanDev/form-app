@@ -8,42 +8,45 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
 )
 
-func Fetch() model.ApiResponse {
+func Fetch() (model.ApiResponse, error) {
 	url := config.AccountUrl()
+	var apiResponse model.ApiResponse
+
 	response, err := http.Get(url)
 	if err != nil {
-		fmt.Print(err.Error())
-		os.Exit(1)
+		return apiResponse, err
 	}
+
 	responseData, err := ioutil.ReadAll(response.Body)
 	if err != nil {
-		log.Fatal(err)
+		return apiResponse, err
 	}
-	var apiResponse model.ApiResponse
+
 	json.Unmarshal([]byte(string(responseData)), &apiResponse)
-	return apiResponse
+	return apiResponse, nil
 }
 
-func FetchMapped() []model.Account {
+func FetchMapped() ([]model.Account, error) {
 	url := config.AccountUrl()
+	var accounts []model.Account
+
 	response, err := http.Get(url)
 	if err != nil {
-		fmt.Print(err.Error())
-		os.Exit(1)
+		return accounts, err
 	}
+
 	responseData, err := ioutil.ReadAll(response.Body)
 	if err != nil {
-		log.Fatal(err)
+		return accounts, err
 	}
+
 	var apiResponse model.ApiResponse
 	json.Unmarshal([]byte(string(responseData)), &apiResponse)
 	accountDataList := apiResponse.AccountDataList
-	var accounts []model.Account
 	accounts = mapAccounts(accountDataList)
-	return accounts
+	return accounts, nil
 }
 
 func mapAccounts(accountDataList []model.AccountData) []model.Account {

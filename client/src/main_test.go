@@ -16,7 +16,7 @@ var version int64 = 0
 var versionPointer *int64 = &version
 
 func TestInit(t *testing.T) {
-	log.Println("----- ----- ----- Initiate API Testing ----- ----- -----")
+	log.Println("----- ----- ----- ----- ----- Initiate API Testing ----- ----- ----- ----- -----")
 
 	const baseUrl = "http://interview-accountapi:8080"
 	// const baseUrl = "http://localhost:8080"
@@ -180,7 +180,11 @@ func TestCreate_expect400BadRequest_InvalidInput(t *testing.T) {
 }
 
 func TestFetch(t *testing.T) {
-	apiResponse := operation.Fetch()
+	apiResponse, err := operation.Fetch()
+	if err != nil {
+		t.Errorf("No error expected but %v", err)
+	}
+
 	accountDataList := apiResponse.AccountDataList
 
 	actualCount := len(accountDataList)
@@ -192,7 +196,10 @@ func TestFetch(t *testing.T) {
 }
 
 func TestFetchMapped(t *testing.T) {
-	accounts := operation.FetchMapped()
+	accounts, err := operation.FetchMapped()
+	if err != nil {
+		t.Errorf("No error expected but %v", err)
+	}
 
 	if len(accounts) != 1 {
 		t.Error("Expected one account")
