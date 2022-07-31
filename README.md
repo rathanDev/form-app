@@ -2,12 +2,15 @@ Candidate Name: Janarthan
 
 ### Build form3-client as docker image
 
-cd client 
+cd client
 docker build -t form3tech-client .
 
-
 ### Update given docker-compose.yml
-# Add clint to given docker compose 
+
+cd server
+git clone https://github.com/form3tech-oss/interview-accountapi.git
+
+# Update given docker-compose.yml with client
 
   form3techclient:
     image: form3tech-client:latest
@@ -16,15 +19,11 @@ docker build -t form3tech-client .
       - accountapi
     restart: on-failure
 
-# Add container_name to account api 
+# Add container_name to account api
 
-container_name: interview-accountapi
+  container_name: interview-accountapi
 
-# Run docker-compose 
+### Run
 
 cd server/interview-accountapi
-docker-compose config             
-docker-compose up               
-
-
-
+docker-compose up

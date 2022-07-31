@@ -1,6 +1,0 @@
-version: '3.9'
-services:
-  form3client:
-    container_name: form3-client
-    image: form3-client:latest
-    restart: on-failure

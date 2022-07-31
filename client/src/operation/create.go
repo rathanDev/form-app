@@ -17,14 +17,14 @@ func Create(accountData model.AccountData) (*http.Response, error) {
 }
 
 func createPayload(accountData model.AccountData) []byte {
-	a, _ := json.Marshal(accountData)
+	jsonData, _ := json.Marshal(accountData)
 	const (
 		jsonTemplate = `{
 			"data": %s
 		  }
 		`
 	)
-	var jsonPayload = fmt.Sprintf(jsonTemplate, a)
+	var jsonPayload = fmt.Sprintf(jsonTemplate, jsonData)
 	var payload = []byte(jsonPayload)
 	return payload
 }
