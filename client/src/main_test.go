@@ -5,7 +5,7 @@ import (
 	"form3-client/model"
 	"form3-client/operation"
 	"form3-client/util"
-	// "log"
+	"log"
 	"testing"
 )
 
@@ -16,9 +16,23 @@ var version int64 = 0
 var versionPointer *int64 = &version
 
 func TestInit(t *testing.T) {
+	log.Println("----- ----- ----- Initiate API Testing ----- ----- -----")
+
 	const baseUrl = "http://interview-accountapi:8080"
 	// const baseUrl = "http://localhost:8080"
 	config.SetBaseUrl(baseUrl)
+
+	resp, err := operation.CheckHealth()
+	if err != nil {
+		t.Errorf("No error expected but %v", err)
+	}
+
+	const okayStatus = "200 OK"
+	var actualStatus = resp.Status
+
+	if actualStatus != okayStatus {
+		t.Errorf("Operation status actual:%q expected:%q", actualStatus, okayStatus)
+	}
 }
 
 func TestCreate_expect201Created(t *testing.T) {

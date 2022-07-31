@@ -52,6 +52,9 @@ docker network connect form3-network form3-client
 
 
 
+docker exec -it <ID> bash 
+
+
 # ----- ----- # ----- ----- # ----- ----- # ----- ----- #
 
 Encapsulated code into functions 
